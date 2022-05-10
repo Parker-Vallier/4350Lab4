@@ -56,8 +56,46 @@ public class Main {
             System.out.println("Not in the table :(");
         }
 
+        inTripNumber = 0;
+        inDate = "";
+        inScheduledStartTime = "";
+        String inScheduledArrivalTime = "";
+        String inDriverName = "";
+        int inBusID = 0;
+        query = "INSERT INTO tripoffering VALUE (\""+ inTripNumber +"\", \""+ inDate +"\", \""+ inScheduledStartTime +"\", \""+ inScheduledArrivalTime +"\", \""+ inDriverName +"\", \""+ inBusID +"\")";
+        try{
+            rs = st.executeQuery(query);
+            System.out.println("Added :)");
+        }catch (Exception e){
+            System.out.println("Can't add that :(");
+        }
+
+        inTripNumber = 0;
+        inDate = "";
+        inScheduledStartTime = "";
+        inDriverName = "";
+        query = "UPDATE tripoffering SET DriverName = \""+ inDriverName +"\" WHERE TripNumber = \""+ inTripNumber +"\" AND Date = \""+ inDate +"\" AND ScheduledStartTime = \""+ inScheduledStartTime +"\"";
+        try{
+            rs = st.executeQuery(query);
+            System.out.println("Updated :)");
+        }catch (Exception e){
+            System.out.println("Can't update that :(");
+        }
+
+        inTripNumber = 0;
+        inDate = "";
+        inScheduledStartTime = "";
+        inBusID = 0;
+        query = "UPDATE tripoffering SET BusID = \""+ inBusID +"\" WHERE TripNumber = \""+ inTripNumber +"\" AND Date = \""+ inDate +"\" AND ScheduledStartTime = \""+ inScheduledStartTime +"\"";
+        try{
+            rs = st.executeQuery(query);
+            System.out.println("Updated :)");
+        }catch (Exception e) {
+            System.out.println("Can't update that :(");
+        }
 
 
+        // Number 3
 
         st.close();
         con.close();
