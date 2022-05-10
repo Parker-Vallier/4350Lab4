@@ -173,7 +173,10 @@ public class Main {
 
     public static void numThree(Connection con, Statement st){
         System.out.println("\nNumber 3");
-        int inTripNumber = 0;
+        Scanner scan = new Scanner(System.in);
+        System.out.print("Input TripNumber: ");
+        int inTripNumber = scan.nextInt();
+        scan.nextLine();
         String query = "SELECT * FROM tripstopinfo WHERE TripNumber = "+ inTripNumber +" ORDER BY SequenceNumber ASC";
         try{
             ResultSet rs = st.executeQuery(query);
@@ -192,8 +195,13 @@ public class Main {
 
     public static void numFour(Connection con, Statement st){
         System.out.println("\nNumber 4");
-        String inDriverName = "Dave";
-        String inDate = "2022-05-10";
+        Scanner scan = new Scanner(System.in);
+
+        System.out.print("Input DriverName: ");
+        String inDriverName = scan.nextLine();
+
+        System.out.print(" Input Date: ");
+        String inDate = scan.nextLine();
         String query = "SELECT * FROM tripoffering WHERE DriverName = \""+ inDriverName +"\" AND WEEK(Date) = Week(\""+ inDate +"\")";
 
         try{
@@ -219,9 +227,14 @@ public class Main {
 
     public static void numFive(Connection con, Statement st){
         System.out.println("\nNumber 5");
+        Scanner scan = new Scanner(System.in);
 
-        String inDriverName = "";
-        String inDriverTelephoneNumber = "";
+        System.out.print("Input inDriverName: ");
+        String inDriverName = scan.nextLine();
+
+        System.out.print(" Input inDriverTelephoneNumber: ");
+        String inDriverTelephoneNumber = scan.nextLine();
+
         String query = "INSERT INTO driver VALUE (\""+ inDriverName +"\", \""+ inDriverTelephoneNumber +"\")";
         try {
             st.executeUpdate(query);
@@ -234,9 +247,18 @@ public class Main {
 
     public static void numSix(Connection con, Statement st){
         System.out.println("\nNumber 6");
-        int inBusID = 0;
-        String inModel = "";
-        int inYear = 0;
+        Scanner scan = new Scanner(System.in);
+        System.out.print("Input BusID: ");
+        int inBusID = scan.nextInt();
+        scan.nextLine();
+
+        System.out.print("Input Bus Model: ");
+        String inModel = scan.nextLine();
+
+        System.out.print("Input Year: ");
+        int inYear = scan.nextInt();
+        scan.nextLine();
+
         String query = "INSERT INTO bus VALUE ( "+ inBusID +", \""+ inModel +"\", "+ inYear +")";
 
         try{
@@ -250,9 +272,18 @@ public class Main {
     public static void numSeven(Connection con, Statement st){
         System.out.println("\nNumber 7");
 
-        int inBusID = 0;
-        String inModel = "";
-        int inYear = 0;
+        Scanner scan = new Scanner(System.in);
+        System.out.print("Input BusID: ");
+        int inBusID = scan.nextInt();
+        scan.nextLine();
+
+        System.out.print("Input Bus Model: ");
+        String inModel = scan.nextLine();
+
+        System.out.print("Input Year: ");
+        int inYear = scan.nextInt();
+        scan.nextLine();
+
         String query = "DELETE FROM bus WHERE BusID = "+ inBusID +" AND Model = \""+ inModel +"\" AND Year = "+ inYear;
 
         try {
