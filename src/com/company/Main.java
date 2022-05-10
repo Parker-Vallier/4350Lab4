@@ -28,18 +28,22 @@ public class Main {
                         "LEFT JOIN tripoffering B " +
                         "ON A.TripNumber = B.TripNumber " +
                         "WHERE A.StartLocationName = \"" + inStartLocationName + "\" AND A.DestinationName = \"" + inDestinationName + "\" AND B.Date = \"" + inDate + "\"";
-        rs = st.executeQuery(query);
-        System.out.println("Number 1");
-        while(rs.next()){
-            String StartLocationName = rs.getString("StartLocationName");
-            String DestinationName = rs.getString("DesinationName");
-            String Date = rs.getString("Date");
-            String ScheduleStartTime = rs.getString("ScheduleStartTime");
-            String ScheduleArrivalTime = rs.getString("ScheduleArrivalTime");
-            String DriverName = rs.getString("DriverName");
-            int BusID = rs.getInt("BusID");
+        try {
+            rs = st.executeQuery(query);
+            System.out.println("Number 1");
+            while (rs.next()) {
+                String StartLocationName = rs.getString("StartLocationName");
+                String DestinationName = rs.getString("DesinationName");
+                String Date = rs.getString("Date");
+                String ScheduleStartTime = rs.getString("ScheduleStartTime");
+                String ScheduleArrivalTime = rs.getString("ScheduleArrivalTime");
+                String DriverName = rs.getString("DriverName");
+                int BusID = rs.getInt("BusID");
 
-            System.out.println(StartLocationName + " " + DestinationName + " " + Date + " " + ScheduleStartTime + " " + ScheduleArrivalTime + " " + DriverName + " " + BusID);
+                System.out.println(StartLocationName + " " + DestinationName + " " + Date + " " + ScheduleStartTime + " " + ScheduleArrivalTime + " " + DriverName + " " + BusID);
+            }
+        } catch (Exception e){
+            System.out.println("Problems :(");
         }
 
 
@@ -96,7 +100,25 @@ public class Main {
 
 
         // Number 3
+        System.out.println("Number 3");
+        inTripNumber = 0;
+        query = "SELECT * FROM tripstopinfo WHERE TripNumber = "+ inTripNumber +" ORDER BY SequenceNumber ASC";
+        try{
+            rs = st.executeQuery(query);
+            while (rs.next()){
+                int TripNumber = rs.getInt("TripNumber");
+                int StopNumber = rs.getInt("StopNumber");
+                int SequenceNumber = rs.getInt("SequenceNumber");
+                String DrivingTime = rs.getString("DrivingTime");
+                System.out.println(TripNumber + " " + StopNumber + " " + SequenceNumber + " " + DrivingTime);
+            }
+        }catch (Exception e){
+            System.out.println("Can't show that :(");
+        }
 
+
+        // Number 4
+        System.out.println("Number 4");
         st.close();
         con.close();
     }
