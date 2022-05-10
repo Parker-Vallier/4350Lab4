@@ -51,7 +51,7 @@ public class Main {
         System.out.println("\nNumber 1");
         String inStartLocationName = "";
         String inDestinationName = "";
-        String inDate = "";
+        String inDate = "2000-01-01";
         String query = "SELECT A.StartLocationName, A.DestinationName, B.Date, B.ScheduledStartTime, B.ScheduledArrivalTime, B.DriverName, B.BusID FROM trip A " +
                 "LEFT JOIN tripoffering B " +
                 "ON A.TripNumber = B.TripNumber " +
@@ -83,10 +83,10 @@ public class Main {
         String inScheduledStartTime = "";
         String query = "DELETE FROM tripoffering WHERE TripNumber = \""+ inTripNumber +"\" AND Date = \""+ inDate +"\" AND ScheduledStartTime = \" "+ inScheduledStartTime + "\"";
         try{
-            ResultSet rs = st.executeQuery(query);
+            st.executeQuery(query);
             System.out.println("Deleted :)");
         }catch (Exception e){
-            System.out.println("Not in the table :(");
+            System.out.println("Can't remove that :(");
         }
 
         inTripNumber = 0;
@@ -97,7 +97,7 @@ public class Main {
         int inBusID = 0;
         query = "INSERT INTO tripoffering VALUE (\""+ inTripNumber +"\", \""+ inDate +"\", \""+ inScheduledStartTime +"\", \""+ inScheduledArrivalTime +"\", \""+ inDriverName +"\", \""+ inBusID +"\")";
         try{
-            ResultSet rs = st.executeQuery(query);
+            st.executeQuery(query);
             System.out.println("Added :)");
         }catch (Exception e){
             System.out.println("Can't add that :(");
@@ -121,7 +121,7 @@ public class Main {
         inBusID = 0;
         query = "UPDATE tripoffering SET BusID = \""+ inBusID +"\" WHERE TripNumber = \""+ inTripNumber +"\" AND Date = \""+ inDate +"\" AND ScheduledStartTime = \""+ inScheduledStartTime +"\"";
         try{
-            ResultSet rs = st.executeQuery(query);
+            st.executeQuery(query);
             System.out.println("Updated :)");
         }catch (Exception e) {
             System.out.println("Can't update that :(");
@@ -176,14 +176,48 @@ public class Main {
 
     public static void numFive(Connection con, Statement st){
         System.out.println("\nNumber 5");
+
+        String inDriverName = "";
+        String inDriverTelephoneNumber = "";
+        String query = "INSERT INTO driver VALUE (\""+ inDriverName +"\", \""+ inDriverTelephoneNumber +"\")";
+        try {
+            st.executeQuery(query);
+            System.out.println("Added :)");
+        }catch (Exception e){
+            System.out.println("Can't add that :(");
+        }
+
     }
 
     public static void numSix(Connection con, Statement st){
         System.out.println("\nNumber 6");
+        int inBusID = 0;
+        String inModel = "";
+        int inYear = 0;
+        String query = "INSERT INTO bus VALUE ( "+ inBusID +", \""+ inModel +"\", "+ inYear +")";
+
+        try{
+            st.executeQuery(query);
+            System.out.println("Added :)");
+        }catch (Exception e){
+            System.out.println("Can't add that :(");
+        }
     }
 
     public static void numSeven(Connection con, Statement st){
         System.out.println("\nNumber 7");
+
+        int inBusID = 0;
+        String inModel = "";
+        int inYear = 0;
+        String query = "DELETE FROM bus WHERE BusID = "+ inBusID +" AND Model = \""+ inModel +"\" AND Year = "+ inYear;
+
+        try {
+            st.executeQuery(query);
+            System.out.println("Deleted :)");
+        }catch (Exception e){
+            System.out.println("Can't remove that :(");
+        }
     }
 
     public static void numEight(Connection con, Statement st){
